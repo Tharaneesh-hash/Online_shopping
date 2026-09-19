@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReMarket - Buy & Sell Used Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+<body>
+<header class="navbar">
+    <div class="logo" onclick="showPage('home')">
+        <span class="logo-icon">↻</span>
+        <span>Re<span>Market</span></span>
+    </div>
+    <nav>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('browse')">Browse</a>
+        <a href="#" onclick="showPage('browse')">Categories</a>
+        <a href="#" onclick="showPage('favorites')">
+            Favorites ❤️
+        </a>
+        <a href="#" onclick="showPage('listings')">
+            My Listings
+        </a>
+        <button class="sell-btn" onclick="showPage('sell')">
+            + Sell Item
+        </button>
+    </nav>
+</header>
+<section id="home" class="page active">
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="small-title">
+                BUY SMART • SELL EASY
+            </p>
+            <h1>
+                Give your unused<br>
+                things a new home.
+            </h1>
+            <p>
+                Buy and sell quality used products directly
+                with people around you.
+            </p>
+            <div class="hero-buttons">
+                <button
+                    class="primary-btn"
+                    onclick="showPage('browse')">
+                    Browse Products
+                </button>
+                <button
+                    class="outline-btn"
+                    onclick="showPage('sell')">
+                    Sell Something
+                </button>
+            </div>
+        </div>
+    </div>
+    <section class="features">
+        <div class="feature">
+            <div>🔎</div>
+            <h3>Easy Search</h3>
+            <p>Find products quickly.</p>
+        </div>
+        <div class="feature">
+            <div>💰</div>
+            <h3>Great Prices</h3>
+            <p>Affordable pre-owned products.</p>
+        </div>
+        <div class="feature">
+            <div>🤝</div>
+            <h3>Direct Contact</h3>
+            <p>Connect directly with sellers.</p>
+        </div>
+        <div class="feature">
+            <div>♻️</div>
+            <h3>Eco Friendly</h3>
+            <p>Give products a second life.</p>
+        </div>
+    </section>
+</section>
+<section id="browse" class="page">
+    <div class="browse-container">
+        <h1>Find What You Need</h1>
+        <p class="subtitle">
+            Explore affordable pre-owned products.
+        </p>
+        <div class="search-area">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for phones, bikes, furniture..."
+                onkeyup="searchProducts()"
+            >
+            <button onclick="searchProducts()">
+                🔍 Search
+            </button>
+        </div>
+        <div class="categories">
+            <button
+                class="category active-category"
+                onclick="filterProducts('All', this)">
+                All
+            </button>
+            <button
+                class="category"
+                onclick="filterProducts('Electronics', this)">
+                📱 Electronics
+            </button>
+            <button
+                class="category"
+                onclick="filterProducts('Vehicles', this)">
+                🚗 Vehicles
+            </button>
+            <button
+                class="category"
+                onclick="filterProducts('Furniture', this)">
+                🪑 Furniture
+            </button>
+            <button
+                class="category"
+                onclick="filterProducts('Fashion', this)">
+                👕 Fashion
+            </button>
+            <button
+                class="category"
+                onclick="filterProducts('Books', this)">
+                📚 Books
+            </button>
+            <button
+                class="category"
+                onclick="filterProducts('Others', this)">
+                📦 Others
+            </button>
+        </div>
+        <div id="productGrid" class="product-grid">
+        </div>
+    </div>
+</section>
+<section id="favorites" class="page">
+    <div class="browse-container">
+        <h1>Your Favorites ❤️</h1>
+        <p class="subtitle">
+            Products you saved for later.
+        </p>
+        <div id="favoriteGrid" class="product-grid">
+        </div>
+    </div>
+</section>
+<section id="listings" class="page">
+    <div class="browse-container">
+        <h1>My Listings</h1>
+        <p class="subtitle">
+            Products you have posted for sale.
+        </p>
+        <div id="listingGrid" class="product-grid">
+        </div>
+    </div>
+</section>
+<section id="sell" class="page sell-page">
+    <div class="sell-container">
+        <h1>Sell Your Product</h1>
+        <p class="subtitle">
+            Create a listing and reach potential buyers.
+        </p>
+        <form id="sellForm">
+            <label>Product Name</label>
+            <input
+                type="text"
+                id="productName"
+                placeholder="Enter product name"
+                required
+            >
+            <label>Category</label>
+            <select id="productCategory" required>
+                <option value="">
+                    Select category
+                </option>
+                <option value="Electronics">
+                    Electronics
+                </option>
+                <option value="Vehicles">
+                    Vehicles
+                </option>
+                <option value="Furniture">
+                    Furniture
+                </option>
+                <option value="Fashion">
+                    Fashion
+                </option>
+                <option value="Books">
+                    Books
+                </option>
+                <option value="Others">
+                    Others
+                </option>
+            </select>
+            <label>Price (₹)</label>
+            <input
+                type="number"
+                id="productPrice"
+                placeholder="Enter price"
+                required
+            >
+            <label>Condition</label>
+            <select id="productCondition">
+                <option>Like New</option>
+                <option>Good</option>
+                <option>Used</option>
+            </select>
+            <label>Location</label>
+            <input
+                type="text"
+                id="productLocation"
+                placeholder="Erode"
+                required
+            >
+            <label>Product Description</label>
+            <textarea
+                id="productDescription"
+                placeholder="Describe your product..."
+                required
+            ></textarea>
+            <label>Product Image</label>
+            <input
+                type="file"
+                id="productImage"
+                accept="image/*"
+                onchange="previewImage(event)"
+            >
+            <img
+                id="imagePreview"
+                class="image-preview"
+                alt="Image Preview"
+            >
+            <div class="form-buttons">
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="showPage('home')">
+                    Cancl
+                </button>
+                <button
+                    type="submit"
+                    class="publish-btn">
+                    Publish Listing
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeModal()">
+            ×
+        </span>
+        <h2>Contact Seller</h2>
+        <p id="sellerProduct"></p>
+        <input
+            type="text"
+            placeholder="Your Name"
+            id="buyerName"
+        >
+        <input
+            type="tel"
+            placeholder="Your Phone Number"
+            id="buyerPhone"
+        >
+        <textarea
+            placeholder="Write your message..."
+            id="buyerMessage"
+        ></textarea>
+        <button
+            class="primary-btn"
+            onclick="sendMessage()">
+            Send Message
+        </button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
